@@ -1,0 +1,9 @@
+/* Hide sign up / login tip */
+.ndPaywall {
+    display: none !important;
+}
+
+/* Display article contents */
+.ndArticle_content > div {
+    display: block !important;
+}
