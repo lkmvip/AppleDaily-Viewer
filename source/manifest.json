@@ -1,31 +1,42 @@
 {
-    "manifest_version": 2,
-    "name": "AppleDaily Viewer",
-    "version": "1.3",
-    "description": "當閱讀蘋果新聞網的新聞時，可隱藏註冊／登入會員提示，並直接顯示新聞內文。",
-    "icons": {
-        "16": "favicon-16x16.png",
-        "32": "favicon-32x32.png",
-        "48": "favicon-48x48.png",
-        "64": "favicon-64x64.png",
-        "128": "favicon-128x128.png"
-    },
-    "browser_action": {
-        "default_title": "AppleDaily Viewer",
-        "default_icon": {
-            "16": "favicon-16x16.png",
-            "32": "favicon-32x32.png",
-            "48": "favicon-48x48.png",
-            "64": "favicon-64x64.png",
-            "128": "favicon-128x128.png"
-        }
-    },
-    "content_scripts": [
-        {
-            "matches": [ "*://*.appledaily.com/*" ],
-            "css": [ "content.css" ]
-        }
-    ],
-    "permissions": [ "activeTab" ],
-    "short_name": "AppleDaily Viewer"
+  "manifest_version": 2,
+  "name": "AppleDaily Viewer",
+  "version": "2.0",
+  "description": "當閱讀蘋果新聞網的新聞時，可隱藏註冊／登入會員提示，並直接顯示新聞內文。",
+  "icons": {
+    "16": "favicon-16x16.png",
+    "32": "favicon-32x32.png",
+    "48": "favicon-48x48.png",
+    "64": "favicon-64x64.png",
+    "128": "favicon-128x128.png"
+  },
+  "browser_action": {
+    "default_title": "AppleDaily Viewer",
+    "default_icon": {
+      "16": "favicon-16x16.png",
+      "32": "favicon-32x32.png",
+      "48": "favicon-48x48.png",
+      "64": "favicon-64x64.png",
+      "128": "favicon-128x128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.appledaily.com/realtime/*",
+        "*://*.appledaily.com/*/realtime/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "jquery.min.js",
+        "content.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ],
+  "short_name": "AppleDaily Viewer"
 }

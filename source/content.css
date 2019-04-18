@@ -3,7 +3,11 @@
     display: none !important;
 }
 
-/* Display article contents */
-.ndArticle_content > div {
+/* Display article */
+.mediabox,
+#playerVideo,
+.ndAritcle_headPic,
+.ndArticle_margin,
+.articulum {
     display: block !important;
 }

@@ -4,7 +4,13 @@
 
 A chrome extension to hide Sign up / Login tip and display news content when user reading Apple Daily news.
 
-# How to get it?
+## Getting Started
+
+### Prerequisites
+
+* Google Chrome
+
+### Installing
 
 1. 開啟 Chrome 線上應用程式商店。\
    Open the Chrome Web Store.
@@ -18,6 +24,14 @@ A chrome extension to hide Sign up / Login tip and display news content when use
 4. 完成。\
    Done.
 
-# Remark
+## Usage
+
+僅需要訪問 Apple Daily 新聞，擴充元件將會自動判斷是否需要插入內容。
+
+Only need to visit the news webpage of Apple Daily . Extension will automatically judge the contents is needed to insert or not.
+
+## Disclaimer
 
 此擴充元件僅為學術研究交流用途，請使用者在評估相關爭議與可能風險與責任後再決定是否使用。
+
+The extension only for academic exchange. Please assess the associated risks and responsibilities before using.
