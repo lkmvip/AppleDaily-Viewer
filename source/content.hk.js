@@ -19,20 +19,25 @@
  *        ```
  */
 
-function insertHK() {
+const insertHK = () => {
     $(document.body).append(
         `<script type="text/javascript">
              var timeouts = setTimeout(function() { }, 0);
              while (timeouts--)
                  window.clearTimeout(timeouts);
          </script>`);
-    $.ajax({
-        type: 'GET',
-        url: url,
-        datatype: 'html',
-        success: function (data) {
-            if ($('.ArticleContent_Outer').length !== $('.ArticleContent_Outer', $(data)).length)
-                $('#articleContent').replaceWith($('#articleContent'), $(data));
-        }
-    });
+    fetch(url)
+        .then(response => response.text())
+        .then(respText => {
+            if ($('.ArticleContent_Outer').length !== $('.ArticleContent_Outer', respText).length)
+                $('#articleContent').replaceWith($('#articleContent'), srcElement);
+        })
+        .catch(error => {
+            $('.LHSBorderBox').prepend(
+                `<p style="color: red; font-size: 16px; font-weight: bold;">
+                    AppleDaily Viewer fetch failed:
+                    <br />
+                    ${error}
+                </p>`);
+        });
 }

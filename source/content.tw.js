@@ -26,37 +26,64 @@
  *                     div.ndArticle_margin
  */
 
-function insertTW() {
-    if ($('ndArticle_margin').length <= 0) {
-        $.ajax({
-            type: 'GET',
-            url: url,
-            datatype: 'html',
-            success: function (data) {
-                if ($('.mediabox').length <= 0) {
-                    var videoUrlLine = $('.mediabox', $(data)).text().match(new RegExp(/var videoUrl = '.*';/))[0];
-                    if (videoUrlLine !== 'undefined') {
-                        var videoUrl = videoUrlLine.substring(videoUrlLine.indexOf("'") + 1, videoUrlLine.lastIndexOf("'"));
-                        $('.thoracis').prepend(
-                            `<div class="mediabox">
-                                 <video width="100%" autoplay controls preload>
-                                     <source src="${videoUrl}"></source>
-                                 </video>
-                            </div>`
-                        );
-                    }
-                }
-                if ($('.ndAritcle_headPic').length <= 0) {
-                    var headPic = $('.ndAritcle_headPic', $(data));
-                    if (headPic.length > 0)
-                        $('.thoracis').prepend(headPic);
-                }
-                if ($('.ndArticle_margin').length <= 0) {
-                    var margin = $('.ndArticle_margin', $(data));
-                    if (margin.length > 0)
-                        $('.ndArticle_content').prepend(margin);
-                }
-            }
-        });
+const getVideoUrl = (text) => {
+    const videoUrl = text.match(/(https?:)?\/\/.*mp4/);
+    return videoUrl ? videoUrl[0] : null;
+};
+
+const getVideoBlock = (videoUrl) => {
+    return `<div class="mediabox">
+                <video width="100%" autoplay controls preload>
+                    <source src="${videoUrl}"></source>
+                </video>
+            </div>`;
+};
+
+const appendMediaBox = (sourceElement) => {
+    if ($('.mediabox').length <= 0) {
+        const videoUrl = getVideoUrl($(sourceElement).text());
+        if (videoUrl !== null) {
+            var videoBlock = getVideoBlock(videoUrl);
+            if ($('#aniheadID').length > 0)
+                $('#aniheadID').after(videoBlock);
+            else
+                $('.thoracis').prepend(videoBlock);
+        }
     }
-}
+};
+
+const appendHeadPic = (sourceElement) => {
+    if ($('.ndAritcle_headPic').length <= 0) {
+        const headPic = $('.ndAritcle_headPic', sourceElement);
+        if (headPic.length > 0)
+            $('.thoracis').prepend(headPic);
+    }
+};
+
+const appendContent = (sourceElement) => {
+    if ($('.ndArticle_margin').length <= 0) {
+        const margin = $('.ndArticle_margin', sourceElement);
+        if (margin.length > 0)
+            $('.ndArticle_content').prepend(margin);
+    }
+};
+
+const insertTW = () => {
+    if ($('ndArticle_margin').length <= 0) {
+        fetch(url)
+            .then(response => response.text())
+            .then(respText => {
+               appendMediaBox($(respText));
+               appendHeadPic($(respText));
+               appendContent($(respText));
+            })
+            .catch(error => {
+                $('.thoracis').prepend(
+                    `<p style="color: red; font-size: 16px; font-weight: bold;">
+                        AppleDaily Viewer fetch failed:
+                        <br />
+                        ${error}
+                    </p>`);
+            });
+    }
+};

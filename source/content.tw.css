@@ -1,7 +1,8 @@
 /* ========== TW ========== */
 
 /* Hide sign up / login tip */
-.ndPaywall {
+.ndPaywall,
+.ndPaywallVideo {
     display: none !important;
 }
 
