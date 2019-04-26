@@ -23,11 +23,7 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.appledaily.com/new/*",
-        "*://*.appledaily.com/*/article/*",
-        "*://*.appledaily.com/*/daily/*",
-        "*://*.appledaily.com/realtime/*",
-        "*://*.appledaily.com/*/realtime/*"
+        "*://*.appledaily.com/*"
       ],
       "run_at": "document_start",
       "css": [
