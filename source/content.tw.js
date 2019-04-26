@@ -24,12 +24,19 @@
  *             div.ndArticle_contentBox
  *                 atricle.ndArticle_content.clearmen
  *                     div.ndArticle_margin
+ *
+ *     if contacts [abdominis]
+ *         div.thoracis
+ *         div.abdominis
+ *             article.mpatc
+ *                 div.mediabox
+ *                 div.articulum.trans
  */
 
 const getVideoUrl = (text) => {
     const videoUrl = text.match(/(https?:)?\/\/.*mp4/);
     return videoUrl ? videoUrl[0] : null;
-};
+}
 
 const getVideoBlock = (videoUrl) => {
     return `<div class="mediabox">
@@ -37,48 +44,65 @@ const getVideoBlock = (videoUrl) => {
                     <source src="${videoUrl}"></source>
                 </video>
             </div>`;
-};
+}
 
-const appendMediaBox = (sourceElement) => {
-    if ($('.mediabox').length <= 0) {
+const appendMediaBox = (sourceElement, isArticulum = false) => {
+    if ($('div.mediabox').length <= 0) {
         const videoUrl = getVideoUrl($(sourceElement).text());
         if (videoUrl !== null) {
             var videoBlock = getVideoBlock(videoUrl);
             if ($('#aniheadID').length > 0)
                 $('#aniheadID').after(videoBlock);
+            else if (isArticulum)
+                $('article.mpatc').append(videoBlock);
             else
-                $('.thoracis').prepend(videoBlock);
+                $('div.thoracis').prepend(videoBlock);
         }
     }
-};
+}
 
-const appendHeadPic = (sourceElement) => {
+const appendHeadPic = (sourceElement, isArticulum = false) => {
     if ($('.ndAritcle_headPic').length <= 0) {
         const headPic = $('.ndAritcle_headPic', sourceElement);
         if (headPic.length > 0)
-            $('.thoracis').prepend(headPic);
+            if (isArticulum)
+                $('article.mpatc').append(headPic);
+            else
+                $('div.thoracis').prepend(headPic);
     }
-};
+}
 
 const appendContent = (sourceElement) => {
     if ($('.ndArticle_margin').length <= 0) {
         const margin = $('.ndArticle_margin', sourceElement);
         if (margin.length > 0)
-            $('.ndArticle_content').prepend(margin);
+            $('article.ndArticle_content').prepend(margin);
     }
-};
+}
+
+const appendArticulum = (sourceElement) => {
+    if ($('div.articulum.trans').length <= 0) {
+        const articulum = $('div.articulum.trans', sourceElement);
+        if (articulum.length > 0)
+            $('article.mpatc').append(articulum);
+    }
+}
 
 const insertTW = () => {
-    if ($('ndArticle_margin').length <= 0) {
+    if ($('div.ndArticle_margin').length <= 0 && $('div.articulum').length <= 0) {
         fetch(url)
             .then(response => response.text())
             .then(respText => {
-               appendMediaBox($(respText));
-               appendHeadPic($(respText));
-               appendContent($(respText));
+                const isArticulum = $('article.mpatc').length > 0;
+                appendMediaBox($(respText), isArticulum);
+                appendHeadPic ($(respText), isArticulum);
+                if (isArticulum)
+                    appendArticulum($(respText));
+                else
+                    appendContent($(respText));
             })
             .catch(error => {
-                $('.thoracis').prepend(
+                $('div.thoracis').prepend(
                     `<p style="color: red; font-size: 16px; font-weight: bold;">
                         AppleDaily Viewer fetch failed:
                         <br />
