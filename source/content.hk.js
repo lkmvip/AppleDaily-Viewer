@@ -3,29 +3,15 @@
  *     HK Apple Daily
  *
  * CAUSES
- *     Use `setTimeOut` to remove elements every 2000ms.
+ *     Use `setTimeout` to remove elements every 2000ms.
  *         in function `uReadDisplayMsgBox`
  *
  * SOLUTION
- *     Insert JavaScript code into now page to clear all timeout.
+ *     Insert JavaScript code into now page to disable all `setTimeout`.
  *     But I also access the page resources to double check.
- *
- *        ```javascript
- *        <script type="text/javascript">
- *            var timeouts = setTimeout(function() { }, 0);
- *                while (timeouts--)
- *                    window.clearTimeout(timeouts);
- *        </script>
- *        ```
  */
 
-const insertHK = () => {
-    $(document.body).append(
-        `<script type="text/javascript">
-             var timeouts = setTimeout(function() { }, 0);
-             while (timeouts--)
-                 window.clearTimeout(timeouts);
-         </script>`);
+const insertHK = (url) => {
     fetch(url)
         .then(response => response.text())
         .then(respText => {

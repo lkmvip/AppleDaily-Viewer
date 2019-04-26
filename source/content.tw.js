@@ -3,12 +3,13 @@
  *     TW Apple Daily
  *
  * CAUSES
- *     After page loaded, script will remove elements.
+ *     Use `setInterval` to remove elements every 3000ms.
  *         $('.ndAritcle_headPic,.ndArticle_margin,.mediabox,#playerVideo,.articulum').remove();
  *
  * SOLUTION
- *     1. Reload page and get page source.
- *     2. Insert contents into now page.
+ *     1. Insert JavaScript code into now page to disable all `setInterval`.
+ *     2. Reload page and get page source.
+ *     3. Insert contents into now page.
  *
  * PAGE STRUCTURE
  *     if contacts [mediabox, ndArticle_margin]
@@ -88,7 +89,7 @@ const appendArticulum = (sourceElement) => {
     }
 }
 
-const insertTW = () => {
+const insertTW = (url) => {
     if ($('div.ndArticle_margin').length <= 0 && $('div.articulum').length <= 0) {
         fetch(url)
             .then(response => response.text())

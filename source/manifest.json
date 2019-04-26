@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "AppleDaily Viewer",
-  "version": "2.5",
+  "version": "2.6",
   "description": "當閱讀蘋果新聞網的新聞時，可隱藏註冊／登入會員提示，並直接顯示新聞內文。",
   "icons": {
     "16": "favicon-16x16.png",
@@ -29,6 +29,7 @@
         "*://*.appledaily.com/realtime/*",
         "*://*.appledaily.com/*/realtime/*"
       ],
+      "run_at": "document_start",
       "css": [
         "content.tw.css",
         "content.hk.css"
