@@ -12,16 +12,19 @@ A chrome extension to hide Sign up / Login tip and display news content when use
 
 ### Installing
 
-1. 開啟 Chrome 線上應用程式商店。\
-   Open the Chrome Web Store.
+1. 從 [Releases 列表](https://github.com/ychsieh95/AppleDaily-Viewer/releases)下載最新版本的 `appledaily-viewer.zip` 並解壓縮。\
+   Download the latest `appledaily-viewer.zip` from [Releases](https://github.com/ychsieh95/AppleDaily-Viewer/releases) and extract it.
 
-2. 搜尋並選擇你要的擴充元件（或是你也可以[點擊這裡](https://chrome.google.com/webstore/detail/jfmbjjmbeicfbicdlodjahkfmicbgdda/publish-accepted)前往）。\
-   Find and select the extension you want (or your can [click here](https://chrome.google.com/webstore/detail/jfmbjjmbeicfbicdlodjahkfmicbgdda/publish-accepted) to visit).
+2. 開啟 Chrome 後在網址列輸入 `chrome://extensions`（或從更多 -> 更多工具 -> 擴充元件）。\
+   Open Chrome and visit `chrome://extensions` (via More -> More tools -> Extensions).
 
-3. 按下加到 Chrome。\
-   Click Add to Chrome.
+3. 勾選右上角的核取方塊以啟用「開發人員模式」。\
+   Enable "Developer mode" by ticking the checkbox in the upper-right corner.
 
-4. 完成。\
+4. 點擊「載入未封裝項目」，並選擇在步驟一中解壓縮 `appledaily-viewer.zip` 到的目錄。\
+   Click on the "Load unpacked" button and select the directory into which you extract `appledaily-viewer.zip` in step 1.
+
+5. 完成。\
    Done.
 
 ## Usage
