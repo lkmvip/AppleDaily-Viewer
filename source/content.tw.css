@@ -4,6 +4,7 @@
 .ndPaywall,
 .ndPaywallVideo {
     display: none !important;
+    visibility: visible !important;
 }
 
 /* Display article */
@@ -13,4 +14,9 @@
 .ndArticle_margin,
 .articulum {
     display: block !important;
+    visibility: visible !important;
+}
+
+.mediabox {
+    width: inherit !important;
 }
