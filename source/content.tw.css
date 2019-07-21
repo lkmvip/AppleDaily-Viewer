@@ -8,11 +8,12 @@
 }
 
 /* Display article */
-.mediabox,
 #playerVideo,
+.article-content,
+.articulum,
+.mediabox,
 .ndAritcle_headPic,
-.ndArticle_margin,
-.articulum {
+.ndArticle_margin {
     display: block !important;
     visibility: visible !important;
 }

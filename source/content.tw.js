@@ -37,13 +37,13 @@
 const findVideoUrl = (text) => {
     const videoUrl = text.match(/(https?:)?\/\/.*mp4/);
     return videoUrl ? videoUrl[0] : null;
-}
+};
 
 const createVideoBlock = (videoUrl) => {
     return `<video width="100%" autoplay controls preload>
                 <source src="${videoUrl}"></source>
             </video>`;
-}
+};
 
 const insertContent = (respElement) => {
     const margin = $('.ndArticle_margin', respElement);
@@ -53,19 +53,30 @@ const insertContent = (respElement) => {
         else
             $('article.ndArticle_leftColumn').append($('div.thoracis', respElement));
     }
-}
+};
 
 const insertVideo = (respElement) => {
     const videoUrl = findVideoUrl(respElement.text());
     if (videoUrl !== null)
         $('article.ndArticle_content').prepend(createVideoBlock(videoUrl));
-}
+};
 
 const insertTW = (url) => {
     fetch(url)
         .then(response => response.text())
         .then(respText => {
             insertContent($(respText));
-            insertVideo  ($(respText));
-        })
+            insertVideo($(respText));
+        });
+};
+
+const insertNextmag = (url) => {
+    fetch(url)
+        .then(response => response.text())
+        .then(respText => {
+            const content = $('div.article-content', $(respText));
+            if ($('div.article-content').length <= 0 && content.length > 0) {
+                $('div.ndPaywall').after(content);
+            }
+        });
 };

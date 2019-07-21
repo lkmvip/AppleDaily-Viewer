@@ -26,4 +26,4 @@ const insertHK = (url) => {
                     ${error}
                 </p>`);
         });
-}
+};
